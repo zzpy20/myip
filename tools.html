@@ -32,7 +32,11 @@
           <button type="submit" data-i18n="lookup">Lookup</button>
         </form>
         <div class="hint" data-i18n="whoisHint">Looks up RDAP/WHOIS data for an IP or domain, or ASN details if you enter an AS number.</div>
-        <pre class="result" id="whois-result"></pre>
+        <div id="whois-result"></div>
+        <details class="raw-json" id="whois-raw-wrap" style="display:none">
+          <summary data-i18n="rawJson">Raw JSON</summary>
+          <pre class="result" id="whois-raw"></pre>
+        </details>
       </div>
 
       <div id="panel-dns" style="display:none">
@@ -50,7 +54,11 @@
           <button type="submit" data-i18n="lookup">Lookup</button>
         </form>
         <div class="hint" data-i18n="dnsHint">Queries DNS records via Cloudflare's DNS-over-HTTPS resolver.</div>
-        <pre class="result" id="dns-result"></pre>
+        <div id="dns-result"></div>
+        <details class="raw-json" id="dns-raw-wrap" style="display:none">
+          <summary data-i18n="rawJson">Raw JSON</summary>
+          <pre class="result" id="dns-raw"></pre>
+        </details>
       </div>
     </div>
   </main>
@@ -58,6 +66,7 @@
   <footer data-i18n="footer">Personal tool — no ads, no tracking.</footer>
 
   <script src="i18n.js"></script>
+  <script src="format.js"></script>
   <script src="tools.js"></script>
 </body>
 </html>

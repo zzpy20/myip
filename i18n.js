@@ -30,6 +30,7 @@ const translations = {
     lookup: 'Lookup',
     lookingUp: 'Looking up…',
     lookupFailed: 'Lookup failed.',
+    rawJson: 'Raw JSON',
   },
   zh: {
     navHome: '首页',
@@ -62,6 +63,7 @@ const translations = {
     lookup: '查询',
     lookingUp: '查询中…',
     lookupFailed: '查询失败。',
+    rawJson: '原始 JSON',
   },
 };
 

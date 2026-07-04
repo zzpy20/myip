@@ -189,6 +189,18 @@ pre.result {
   font-size: 13px;
 }
 
+.raw-json {
+  border-top: 1px solid #e3e5e9;
+}
+
+.raw-json summary {
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 13px;
+  color: #2563eb;
+  font-weight: 600;
+}
+
 footer {
   text-align: center;
   color: #999;

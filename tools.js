@@ -21,7 +21,10 @@ document.getElementById('whois-form').addEventListener('submit', async (e) => {
   e.preventDefault();
   const query = document.getElementById('whois-query').value.trim();
   const result = document.getElementById('whois-result');
+  const rawWrap = document.getElementById('whois-raw-wrap');
+  const raw = document.getElementById('whois-raw');
   result.textContent = t('lookingUp');
+  rawWrap.style.display = 'none';
 
   try {
     const isAsn = /^AS?\d+$/i.test(query);
@@ -30,7 +33,9 @@ document.getElementById('whois-form').addEventListener('submit', async (e) => {
       : `/api/whois?query=${encodeURIComponent(query)}`;
     const res = await fetch(url);
     const data = await res.json();
-    result.textContent = JSON.stringify(data, null, 2);
+    result.innerHTML = isAsn ? formatAsn(data) : formatRdap(data);
+    raw.textContent = JSON.stringify(data, null, 2);
+    rawWrap.style.display = '';
   } catch (err) {
     result.textContent = t('lookupFailed');
   }
@@ -41,12 +46,17 @@ document.getElementById('dns-form').addEventListener('submit', async (e) => {
   const domain = document.getElementById('dns-domain').value.trim();
   const type = document.getElementById('dns-type').value;
   const result = document.getElementById('dns-result');
+  const rawWrap = document.getElementById('dns-raw-wrap');
+  const raw = document.getElementById('dns-raw');
   result.textContent = t('lookingUp');
+  rawWrap.style.display = 'none';
 
   try {
     const res = await fetch(`/api/dns?domain=${encodeURIComponent(domain)}&type=${type}`);
     const data = await res.json();
-    result.textContent = JSON.stringify(data, null, 2);
+    result.innerHTML = formatDns(data);
+    raw.textContent = JSON.stringify(data, null, 2);
+    rawWrap.style.display = '';
   } catch (err) {
     result.textContent = t('lookupFailed');
   }
