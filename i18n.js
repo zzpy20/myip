@@ -76,6 +76,16 @@ function t(key) {
   return (translations[lang] && translations[lang][key]) || translations.en[key] || key;
 }
 
+function countryName(code) {
+  if (!code) return code;
+  try {
+    const dn = new Intl.DisplayNames([getLang() === 'zh' ? 'zh' : 'en'], { type: 'region' });
+    return dn.of(code.toUpperCase()) || code;
+  } catch {
+    return code;
+  }
+}
+
 function applyTranslations() {
   document.querySelectorAll('[data-i18n]').forEach((el) => {
     el.textContent = t(el.getAttribute('data-i18n'));

@@ -36,7 +36,7 @@ function formatAsn(data) {
   return buildRows([
     ['ASN', data.asn],
     ['Name', escapeHtml(data.name)],
-    ['Country', data.country],
+    ['Country', countryName(data.country)],
     ['Registry', (data.registry || '').toUpperCase()],
     ['Allocated', data.allocated],
   ]);
@@ -72,7 +72,7 @@ function formatRdap(data) {
     ['Name', data.name],
     ['Range', data.startAddress ? `${data.startAddress} – ${data.endAddress}` : null],
     ['CIDR', cidrs],
-    ['Country', data.country],
+    ['Country', countryName(data.country)],
     ['Type', data.type],
     ['Status', escapeHtml(status)],
     ['Nameservers', escapeHtml(nameservers)],

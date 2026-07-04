@@ -40,7 +40,7 @@ function render() {
   rowsEl.appendChild(row(t('organization'), data.organization));
   rowsEl.appendChild(row(t('asn'), data.asn));
 
-  locEl.appendChild(row(t('country'), data.country));
+  locEl.appendChild(row(t('country'), countryName(data.country)));
   locEl.appendChild(row(t('region'), data.region));
   locEl.appendChild(row(t('city'), data.city));
   locEl.appendChild(row(t('postalCode'), data.postalCode));
