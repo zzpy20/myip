@@ -35,6 +35,28 @@ nav a.active {
   color: #fff;
 }
 
+.lang-switch {
+  margin-left: 24px;
+  display: inline-flex;
+  border: 1px solid #3a3d44;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.lang-switch button {
+  border: none;
+  background: transparent;
+  color: #cfd2d8;
+  font-size: 12px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.lang-switch button.active {
+  background: #2563eb;
+  color: #fff;
+}
+
 main {
   max-width: 900px;
   margin: 32px auto;

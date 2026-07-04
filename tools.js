@@ -21,7 +21,7 @@ document.getElementById('whois-form').addEventListener('submit', async (e) => {
   e.preventDefault();
   const query = document.getElementById('whois-query').value.trim();
   const result = document.getElementById('whois-result');
-  result.textContent = 'Looking up…';
+  result.textContent = t('lookingUp');
 
   try {
     const isAsn = /^AS?\d+$/i.test(query);
@@ -32,7 +32,7 @@ document.getElementById('whois-form').addEventListener('submit', async (e) => {
     const data = await res.json();
     result.textContent = JSON.stringify(data, null, 2);
   } catch (err) {
-    result.textContent = 'Lookup failed.';
+    result.textContent = t('lookupFailed');
   }
 });
 
@@ -41,13 +41,13 @@ document.getElementById('dns-form').addEventListener('submit', async (e) => {
   const domain = document.getElementById('dns-domain').value.trim();
   const type = document.getElementById('dns-type').value;
   const result = document.getElementById('dns-result');
-  result.textContent = 'Looking up…';
+  result.textContent = t('lookingUp');
 
   try {
     const res = await fetch(`/api/dns?domain=${encodeURIComponent(domain)}&type=${type}`);
     const data = await res.json();
     result.textContent = JSON.stringify(data, null, 2);
   } catch (err) {
-    result.textContent = 'Lookup failed.';
+    result.textContent = t('lookupFailed');
   }
 });

@@ -10,24 +10,29 @@
   <header>
     <div class="brand">MyIP</div>
     <nav>
-      <a href="index.html" class="active">Home</a>
-      <a href="tools.html">Tools</a>
+      <a href="index.html" class="active" data-i18n="navHome">Home</a>
+      <a href="tools.html" data-i18n="navTools">Tools</a>
+      <span class="lang-switch">
+        <button data-lang="en">EN</button>
+        <button data-lang="zh">中文</button>
+      </span>
     </nav>
   </header>
 
   <main>
     <div class="card">
-      <div class="card-title">Connectivity</div>
+      <div class="card-title" data-i18n="connectivity">Connectivity</div>
       <div id="rows"></div>
     </div>
     <div class="card">
-      <div class="card-title">Location</div>
+      <div class="card-title" data-i18n="location">Location</div>
       <div id="location-rows"></div>
     </div>
   </main>
 
-  <footer>Personal tool — no ads, no tracking.</footer>
+  <footer data-i18n="footer">Personal tool — no ads, no tracking.</footer>
 
+  <script src="i18n.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

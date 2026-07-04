@@ -1,3 +1,6 @@
+let latestWhoami = null;
+let loadFailed = false;
+
 function row(label, value) {
   const div = document.createElement('div');
   div.className = 'row';
@@ -6,40 +9,61 @@ function row(label, value) {
 }
 
 function hostnameBadge(hostname) {
-  if (!hostname) return '<span class="badge none">None</span>';
+  if (!hostname) return `<span class="badge none">${t('none')}</span>`;
   return hostname;
 }
 
-async function loadWhoami() {
+function render() {
   const rowsEl = document.getElementById('rows');
   const locEl = document.getElementById('location-rows');
-  rowsEl.appendChild(row('Status', 'Loading…'));
+
+  if (loadFailed) {
+    rowsEl.innerHTML = '';
+    rowsEl.appendChild(row(t('error'), null));
+    return;
+  }
+
+  if (!latestWhoami) {
+    rowsEl.innerHTML = '';
+    rowsEl.appendChild(row(t('loading'), null));
+    return;
+  }
+
+  const data = latestWhoami;
+  rowsEl.innerHTML = '';
+  locEl.innerHTML = '';
+
+  rowsEl.appendChild(row(data.version || 'IP', `<span class="badge ok">${t('supported')}</span>`));
+  rowsEl.appendChild(row(t('address'), data.ip));
+  rowsEl.appendChild(row(t('hostname'), hostnameBadge(data.hostname)));
+  rowsEl.appendChild(row(t('isp'), data.isp));
+  rowsEl.appendChild(row(t('organization'), data.organization));
+  rowsEl.appendChild(row(t('asn'), data.asn));
+
+  locEl.appendChild(row(t('country'), data.country));
+  locEl.appendChild(row(t('region'), data.region));
+  locEl.appendChild(row(t('city'), data.city));
+  locEl.appendChild(row(t('postalCode'), data.postalCode));
+  locEl.appendChild(row(t('timezone'), data.timezone));
+  locEl.appendChild(
+    row(t('coordinates'), data.latitude && data.longitude ? `${data.latitude}, ${data.longitude}` : null)
+  );
+  locEl.appendChild(row(t('edgeColo'), data.colo));
+}
+
+async function loadWhoami() {
+  render();
 
   try {
     const res = await fetch('/api/whoami');
-    const data = await res.json();
-    rowsEl.innerHTML = '';
-
-    rowsEl.appendChild(row(data.version || 'IP', `<span class="badge ok">Supported</span>`));
-    rowsEl.appendChild(row('Address', data.ip));
-    rowsEl.appendChild(row('Hostname', hostnameBadge(data.hostname)));
-    rowsEl.appendChild(row('ISP', data.isp));
-    rowsEl.appendChild(row('Organization', data.organization));
-    rowsEl.appendChild(row('ASN', data.asn));
-
-    locEl.appendChild(row('Country', data.country));
-    locEl.appendChild(row('Region', data.region));
-    locEl.appendChild(row('City', data.city));
-    locEl.appendChild(row('Postal Code', data.postalCode));
-    locEl.appendChild(row('Timezone', data.timezone));
-    locEl.appendChild(
-      row('Coordinates', data.latitude && data.longitude ? `${data.latitude}, ${data.longitude}` : null)
-    );
-    locEl.appendChild(row('Edge Colo', data.colo));
-  } catch (err) {
-    rowsEl.innerHTML = '';
-    rowsEl.appendChild(row('Error', 'Failed to load IP info'));
+    latestWhoami = await res.json();
+  } catch {
+    loadFailed = true;
   }
+
+  render();
 }
+
+window.onLangChange = render;
 
 loadWhoami();

@@ -10,30 +10,34 @@
   <header>
     <div class="brand">MyIP</div>
     <nav>
-      <a href="index.html">Home</a>
-      <a href="tools.html" class="active">Tools</a>
+      <a href="index.html" data-i18n="navHome">Home</a>
+      <a href="tools.html" class="active" data-i18n="navTools">Tools</a>
+      <span class="lang-switch">
+        <button data-lang="en">EN</button>
+        <button data-lang="zh">中文</button>
+      </span>
     </nav>
   </header>
 
   <main>
     <div class="card">
       <div class="tabs">
-        <button id="tab-whois" class="active">WHOIS / ASN</button>
-        <button id="tab-dns">DNS Lookup</button>
+        <button id="tab-whois" class="active" data-i18n="tabWhois">WHOIS / ASN</button>
+        <button id="tab-dns" data-i18n="tabDns">DNS Lookup</button>
       </div>
 
       <div id="panel-whois">
         <form id="whois-form" class="tool-form">
-          <input id="whois-query" type="text" placeholder="IP address, domain, or ASN (e.g. AS13335)" required />
-          <button type="submit">Lookup</button>
+          <input id="whois-query" type="text" data-i18n-placeholder="whoisPlaceholder" placeholder="IP address, domain, or ASN (e.g. AS13335)" required />
+          <button type="submit" data-i18n="lookup">Lookup</button>
         </form>
-        <div class="hint">Looks up RDAP/WHOIS data for an IP or domain, or ASN details if you enter an AS number.</div>
+        <div class="hint" data-i18n="whoisHint">Looks up RDAP/WHOIS data for an IP or domain, or ASN details if you enter an AS number.</div>
         <pre class="result" id="whois-result"></pre>
       </div>
 
       <div id="panel-dns" style="display:none">
         <form id="dns-form" class="tool-form">
-          <input id="dns-domain" type="text" placeholder="Domain, e.g. example.com" required />
+          <input id="dns-domain" type="text" data-i18n-placeholder="dnsPlaceholder" placeholder="Domain, e.g. example.com" required />
           <select id="dns-type">
             <option>A</option>
             <option>AAAA</option>
@@ -43,16 +47,17 @@
             <option>CNAME</option>
             <option>SOA</option>
           </select>
-          <button type="submit">Lookup</button>
+          <button type="submit" data-i18n="lookup">Lookup</button>
         </form>
-        <div class="hint">Queries DNS records via Cloudflare's DNS-over-HTTPS resolver.</div>
+        <div class="hint" data-i18n="dnsHint">Queries DNS records via Cloudflare's DNS-over-HTTPS resolver.</div>
         <pre class="result" id="dns-result"></pre>
       </div>
     </div>
   </main>
 
-  <footer>Personal tool — no ads, no tracking.</footer>
+  <footer data-i18n="footer">Personal tool — no ads, no tracking.</footer>
 
+  <script src="i18n.js"></script>
   <script src="tools.js"></script>
 </body>
 </html>
