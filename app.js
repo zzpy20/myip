@@ -52,10 +52,11 @@ function render() {
 }
 
 async function loadWhoami() {
+  render();
+
   try {
     const res = await fetch('/api/whoami');
     latestWhoami = await res.json();
-    loadFailed = false;
   } catch {
     loadFailed = true;
   }
@@ -63,38 +64,6 @@ async function loadWhoami() {
   render();
 }
 
-const POLL_INTERVAL_MS = 4000;
-let pollTimer = null;
-let pollInFlight = false;
-
-async function pollTick() {
-  if (pollInFlight) return;
-  pollInFlight = true;
-  await loadWhoami();
-  pollInFlight = false;
-}
-
-function startPolling() {
-  if (pollTimer) return;
-  pollTimer = setInterval(pollTick, POLL_INTERVAL_MS);
-}
-
-function stopPolling() {
-  clearInterval(pollTimer);
-  pollTimer = null;
-}
-
-document.addEventListener('visibilitychange', () => {
-  if (document.hidden) {
-    stopPolling();
-  } else {
-    pollTick();
-    startPolling();
-  }
-});
-
 window.onLangChange = render;
 
-render();
 loadWhoami();
-startPolling();
