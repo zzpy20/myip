@@ -66,10 +66,10 @@ wrangler pages dev .
 
 请不要直接调用 `wrangler pages deploy` —— `deploy.sh` 会把当前 git commit 的
 哈希值注入静态资源的 URL 中，确保浏览器在每次部署后都不会继续使用缓存的旧版本。
-完整原理请参见 [CACHING.md](CACHING.md)（英文文档）。
+完整原理请参见 [CACHING.zh-CN.md](CACHING.zh-CN.md)。
 
 ## 文档
 
-- [CACHING.md](CACHING.md)（英文）— 缓存控制策略说明（git commit
-  哈希自动版本控制 + `_headers` 文件）：为什么需要它、每部分的原理，以及如何在
-  其他静态站点项目中复用这套方案。
+- [CACHING.zh-CN.md](CACHING.zh-CN.md)（[English](CACHING.md)）—
+  缓存控制策略说明（git commit 哈希自动版本控制 + `_headers` 文件）：为什么
+  需要它、每部分的原理，以及如何在其他静态站点项目中复用这套方案。

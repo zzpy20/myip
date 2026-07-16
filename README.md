@@ -73,6 +73,7 @@ full explanation of how that works and why it's needed.
 
 ## Documentation
 
-- [CACHING.md](CACHING.md) — the cache-busting strategy (git-hash
-  auto-versioning + the `_headers` file): why it exists, how each piece
-  works, and how to reuse the pattern in other static-site projects.
+- [CACHING.md](CACHING.md) ([中文](CACHING.zh-CN.md)) — the cache-busting
+  strategy (git-hash auto-versioning + the `_headers` file): why it exists,
+  how each piece works, and how to reuse the pattern in other static-site
+  projects.

@@ -1,3 +1,5 @@
+**English** | [简体中文](CACHING.zh-CN.md)
+
 # Browser cache busting: how this project avoids stale content
 
 Written as a reference for future-me and for reuse in other static-site
